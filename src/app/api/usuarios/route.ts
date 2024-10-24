@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import bcrypt from "bcryptjs";
 
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
@@ -42,11 +43,12 @@ export async function POST(request: Request) {
         return NextResponse.json({ message: "Chave, usuário ou senha não informada" }, { status: 400 });
     }
     try {
+        const hashedSenha = await bcrypt.hash(senha, 10)
         const newUsuario = await prisma.usuarios.create({
             data: {
                 chave: chave,
                 usuario: usuario,
-                senha: senha,
+                senha: hashedSenha,
                 permissao: 1
             }
         });
