@@ -16,3 +16,19 @@ model Usuarios {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Carteiras {
+  id        Int      @id @default(autoincrement())
+  chave     String
+  nome      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Classes {
+  id        Int      @id @default(autoincrement())
+  chave     String
+  nome      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

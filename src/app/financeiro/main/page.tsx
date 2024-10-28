@@ -1,12 +1,14 @@
 'use client'
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useRouter } from "next/navigation";
 import { LogOut } from "lucide-react";
-import Vendas from "./vendas";
+import RendaFixa from "./rendaFixa";
+import Ajustes from "./ajustes";
 
-export default function Home() {
+export default function Financeiro() {
+
     const router = useRouter();
 
     const logOut = () => {
@@ -22,25 +24,26 @@ export default function Home() {
                 <label className="text-md">{localStorage.getItem("usuario")}</label>
                 <Button variant={"ghost"} onClick={logOut} className="">{<LogOut />}</Button>
             </div>
-            <Tabs defaultValue="vendas">
+            <Tabs defaultValue="ajustes">
                 <div className="flex items-center justify-center">
                     <TabsList>
-                        <TabsTrigger value="vendas">Vendas</TabsTrigger>
-                        <TabsTrigger value="caixa">Caixa</TabsTrigger>
-                        <TabsTrigger value="produtos">Produtos</TabsTrigger>
-                        <TabsTrigger value="entradas">Entradas</TabsTrigger>
+                        <TabsTrigger value="overview">Overview</TabsTrigger>
+                        <TabsTrigger value="rendaFixa">Renda Fixa</TabsTrigger>
+                        <TabsTrigger value="rendaVariavel">Renda Variável</TabsTrigger>
+                        <TabsTrigger value="ajustes">Ajustes</TabsTrigger>
                     </TabsList>
                 </div>
-                <TabsContent value="vendas" className="w-screen px-10 py-3">
-                    <Vendas />
+                <TabsContent value="overview" className="w-screen px-10 py-3">
                 </TabsContent>
-                <TabsContent value="caixa" className="w-screen px-10 py-3">
+                <TabsContent value="rendaFixa" className="w-screen px-10 py-3">
+                    <RendaFixa />
                 </TabsContent>
-                <TabsContent value="produtos" className="w-screen px-10 py-3">
+                <TabsContent value="rendaVariavel" className="w-screen px-10 py-3">
                 </TabsContent>
-                <TabsContent value="entradas" className="w-screen px-10 py-3">
+                <TabsContent value="ajustes" className="w-screen px-10 py-3">
+                    <Ajustes />
                 </TabsContent>
             </Tabs>
         </div>
-    );
+    )
 }

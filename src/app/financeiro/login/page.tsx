@@ -10,7 +10,8 @@ import { useState } from "react"
 import { ModeToggle } from "@/components/darkModeToggle"
 import { useRouter } from "next/navigation"
 
-export default function Login() {
+export default function LoginFinanceiro() {
+
     const [chave, setChave] = useState<string>("")
     const [usuario, setUsuario] = useState<string>("")
     const [senha, setSenha] = useState<string>("")
@@ -31,7 +32,7 @@ export default function Login() {
                 localStorage.setItem("permissao", user.permissao.toString());
                 console.log(response)
                 toast.success("Sucesso!", { description: "Bem vindo(a) " + response.data.user.user + "!" });
-                router.push("/main")
+                router.push("/financeiro/main")
             } else {
                 toast.warning("Ops!", { description: response.data.message });
             }
@@ -51,14 +52,14 @@ export default function Login() {
                 <Button
                     variant={"secondary"}
                     onClick={() => {
-                        router.push('/financeiro/login')
+                    router.back()
                     }}
-                >Financeiro</Button>
+                >CGM Sistemas</Button>
                 <ModeToggle />
             </div>
             <Card className="w-1/4">
                 <CardHeader className="flex items-center">
-                    <h1 className="text-2xl font-bold">CGM Sistemas</h1>
+                    <h1 className="text-2xl font-bold">CGM Financeiro</h1>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={login}>
